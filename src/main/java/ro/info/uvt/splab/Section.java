@@ -5,32 +5,32 @@ import java.util.List;
 
 public class Section implements Element {
     private String title;
-    private List<Element> children = new ArrayList<>();
+    private List<Element> elements = new ArrayList<>();
 
-    public Section(String title) { this.title = title; }
+    public Section(String title) {
+        this.title = title;
+    }
 
     @Override
     public void print() {
         System.out.println(title);
-        for (Element child : children) {
-            child.print();
+        for (Element e : elements) {
+            e.print();
         }
     }
 
     @Override
     public void add(Element e) {
-        children.add(e.clone());
+        elements.add(e);
     }
 
-    @Override public void remove(Element e) { children.remove(e); }
-    @Override public Element get(int index) { return children.get(index); }
+    @Override
+    public void remove(Element e) {
+        elements.remove(e);
+    }
 
     @Override
-    public Element clone() {
-        Section newSection = new Section(this.title);
-        for (Element child : this.children) {
-            newSection.add(child);
-        }
-        return newSection;
+    public Element get(int index) {
+        return elements.get(index);
     }
 }

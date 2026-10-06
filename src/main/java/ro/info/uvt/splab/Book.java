@@ -11,7 +11,8 @@ public class Book {
     public Book(String title) { this.title = title; }
 
     public void addAuthor(Author author) { authors.add(author); }
-    public void addContent(Element e) { content.add(e.clone()); }
+
+    public void addContent(Element e) { content.add(e); }
 
     public void print() {
         System.out.println("Book: " + title);
