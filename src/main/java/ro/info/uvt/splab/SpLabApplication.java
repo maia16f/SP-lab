@@ -22,8 +22,16 @@ public class SpLabApplication {
         cap1.add(new Paragraph("Some text"));
         cap1.add(new Table("Table 1"));
 
+        // 1. Statistica (de la pasul anterior)
         BookStatistics stats = new BookStatistics();
         cap1.accept(stats);
         stats.printStatistics();
+
+        System.out.println(); // un rând gol pentru aspect
+
+        // 2. Generare Cuprins (nou)
+        GenerateToC tocVisitor = new GenerateToC();
+        cap1.accept(tocVisitor);
+        tocVisitor.getToc().print();
     }
 }

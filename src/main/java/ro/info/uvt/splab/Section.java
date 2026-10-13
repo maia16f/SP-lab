@@ -10,7 +10,9 @@ public class Section implements Element {
     public Section(String title) {
         this.title = title;
     }
-
+    public String getTitle() {
+        return title;
+    }
     @Override
     public void print() {
         System.out.println(title);
