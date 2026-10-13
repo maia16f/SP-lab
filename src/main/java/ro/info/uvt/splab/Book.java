@@ -20,4 +20,10 @@ public class Book {
         for (Author a : authors) { a.print(); }
         for (Element e : content) { e.print(); }
     }
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element e : content) {
+            e.accept(visitor);
+        }
+    }
 }
