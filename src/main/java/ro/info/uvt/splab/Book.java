@@ -11,12 +11,19 @@ public class Book {
     public Book(String title) { this.title = title; }
 
     public void addAuthor(Author author) { authors.add(author); }
-    public void addContent(Element e) { content.add(e.clone()); }
+
+    public void addContent(Element e) { content.add(e); }
 
     public void print() {
         System.out.println("Book: " + title);
         System.out.println("Authors:");
         for (Author a : authors) { a.print(); }
         for (Element e : content) { e.print(); }
+    }
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element e : content) {
+            e.accept(visitor);
+        }
     }
 }

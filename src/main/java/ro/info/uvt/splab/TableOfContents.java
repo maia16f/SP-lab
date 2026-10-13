@@ -1,9 +1,34 @@
 package splab;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TableOfContents implements Element {
-    @Override public void print() { System.out.println("Table of Contents"); }
-    @Override public void add(Element e) {}
-    @Override public void remove(Element e) {}
-    @Override public Element get(int index) { return null; }
-    @Override public Element clone() { return new TableOfContents(); }
+    private List<String> entries = new ArrayList<>();
+
+    public void addEntry(String entry) {
+        entries.add(entry);
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Table of Contents");
+        for (String entry : entries) {
+            System.out.println(entry);
+        }
+    }
+
+    @Override
+    public void add(Element e) {}
+
+    @Override
+    public void remove(Element e) {}
+
+    @Override
+    public Element get(int index) { return null; }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }
