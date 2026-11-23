@@ -1,22 +1,17 @@
-package splab;
+package ro.info.uvt.splab;
 
-import java.util.concurrent.TimeUnit;
+import jakarta.persistence.Entity;
 
-public class Image implements Element {
-    private String imageName;
+@Entity
+public class Image extends BaseElement {
 
-    public Image(String name) {
-        this.imageName = name;
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private String url;
+
+    public Image() {
     }
 
-    @Override
-    public void print() {
-        System.out.println("Image with name: " + imageName);
+    public Image(String url) {
+        this.url = url;
     }
 
     @Override
@@ -26,9 +21,8 @@ public class Image implements Element {
     public void remove(Element e) {}
 
     @Override
-    public Element get(int index) {
-        return null;
-    }
+    public Element get(int index) { return null; }
+
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);

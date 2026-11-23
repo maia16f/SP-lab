@@ -1,45 +1,53 @@
-package splab;
+package ro.info.uvt.splab;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element {
+@Entity
+public class Section extends BaseElement {
+
     private String title;
-    private List<Element> elements = new ArrayList<>();
+
+    @Override
+    public void print() {
+
+    }
+
+    @OneToMany(targetEntity = BaseElement.class, cascade = CascadeType.ALL)
+    private List<Element> children = new ArrayList<>();
+
+    public Section() {
+    }
 
     public Section(String title) {
         this.title = title;
     }
-    public String getTitle() {
-        return title;
-    }
-    @Override
-    public void print() {
-        System.out.println(title);
-        for (Element e : elements) {
-            e.print();
-        }
-    }
 
     @Override
     public void add(Element e) {
-        elements.add(e);
+        children.add(e);
     }
 
     @Override
     public void remove(Element e) {
-        elements.remove(e);
+        children.remove(e);
     }
 
     @Override
     public Element get(int index) {
-        return elements.get(index);
+        return children.get(index);
     }
+
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
-        for (Element e : elements) {
-            e.accept(visitor);
+        for (Element child : children) {
+            child.accept(visitor);
         }
     }
 }

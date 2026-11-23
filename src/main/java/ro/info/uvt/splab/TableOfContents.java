@@ -1,21 +1,21 @@
-package splab;
+package ro.info.uvt.splab;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableOfContents implements Element {
+@Entity
+public class TableOfContents extends BaseElement {
+
+    @ElementCollection
     private List<String> entries = new ArrayList<>();
+
+    public TableOfContents() {
+    }
 
     public void addEntry(String entry) {
         entries.add(entry);
-    }
-
-    @Override
-    public void print() {
-        System.out.println("Table of Contents");
-        for (String entry : entries) {
-            System.out.println(entry);
-        }
     }
 
     @Override
@@ -25,7 +25,9 @@ public class TableOfContents implements Element {
     public void remove(Element e) {}
 
     @Override
-    public Element get(int index) { return null; }
+    public Element get(int index) {
+        return null;
+    }
 
     @Override
     public void accept(Visitor visitor) {

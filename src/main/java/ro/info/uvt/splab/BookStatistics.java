@@ -1,4 +1,4 @@
-package splab;
+package ro.info.uvt.splab;
 
 public class BookStatistics implements Visitor {
     private int images = 0;

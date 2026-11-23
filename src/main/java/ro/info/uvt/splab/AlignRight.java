@@ -1,6 +1,6 @@
-package splab;
+package ro.info.uvt.splab;
 
-public class AlignRight implements splab.AlignStrategy {
+public class AlignRight implements ro.info.uvt.splab.AlignStrategy {
     @Override
     public void render(String text) {
         System.out.println(text + " +++++");

@@ -1,4 +1,4 @@
-package splab;
+package ro.info.uvt.splab;
 
 public class GenerateToC implements Visitor {
     private TableOfContents toc = new TableOfContents();

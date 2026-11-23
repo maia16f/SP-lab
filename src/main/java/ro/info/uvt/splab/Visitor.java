@@ -1,4 +1,4 @@
-package splab;
+package ro.info.uvt.splab;
 
 public interface Visitor {
     void visit(Book book);

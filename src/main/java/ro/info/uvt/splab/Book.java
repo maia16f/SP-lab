@@ -1,29 +1,40 @@
-package splab;
+package ro.info.uvt.splab;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String title;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Author> authors = new ArrayList<>();
-    private List<Element> content = new ArrayList<>();
 
-    public Book(String title) { this.title = title; }
+    @OneToMany(targetEntity = BaseElement.class, cascade = CascadeType.ALL)
+    private List<Element> elements = new ArrayList<>();
 
-    public void addAuthor(Author author) { authors.add(author); }
-
-    public void addContent(Element e) { content.add(e); }
-
-    public void print() {
-        System.out.println("Book: " + title);
-        System.out.println("Authors:");
-        for (Author a : authors) { a.print(); }
-        for (Element e : content) { e.print(); }
+    public Book() {
     }
+
+    public Book(String title) {
+        this.title = title;
+    }
+
+    public void addAuthor(Author author) {
+        this.authors.add(author);
+    }
+
+    public void addContent(Element element) {
+        this.elements.add(element);
+    }
+
     public void accept(Visitor visitor) {
         visitor.visit(this);
-        for (Element e : content) {
-            e.accept(visitor);
-        }
     }
 }

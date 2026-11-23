@@ -1,4 +1,4 @@
-package splab;
+package ro.info.uvt.splab;
 import org.springframework.stereotype.Component;
 
 @Component
