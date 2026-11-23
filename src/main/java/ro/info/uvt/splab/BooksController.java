@@ -13,10 +13,12 @@ import java.util.List;
 public class BooksController {
 
     private final BooksRepository booksRepository;
+    private final AllBooksSubject allBooksSubject;
 
     @Autowired
-    public BooksController(BooksRepository booksRepository) {
+    public BooksController(BooksRepository booksRepository, AllBooksSubject allBooksSubject) {
         this.booksRepository = booksRepository;
+        this.allBooksSubject = allBooksSubject;
     }
 
     @GetMapping
@@ -34,6 +36,7 @@ public class BooksController {
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
         Book savedBook = booksRepository.save(book);
+        allBooksSubject.add(savedBook);
         return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
     }
 

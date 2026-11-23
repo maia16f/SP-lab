@@ -37,4 +37,11 @@ public class Book {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }
